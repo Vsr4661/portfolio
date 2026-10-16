@@ -733,10 +733,10 @@ export const projects: Project[] = [
     date: "Oct 2026",
     categories: ["learning", "frontend"],
     stack: ["HTML", "CSS", "Bootstrap 5", "CSS Flexbox", "CSS Positioning", "Responsive Design", "Developer Tools"],
-    status: "Crio micro-experience — 5 modules completed",
-    linkNotes: [
-      "No public demo or repository link is available yet: the Crio record has no demo or repo link, and github.com/Vsr4661/qtrip-static has no commits.",
-    ],
+    status: "Live on GitHub Pages",
+    live: "https://vsr4661.github.io/qtrip-static/",
+    repo: "https://github.com/Vsr4661/qtrip-static",
+    linkNotes: ["Built in Crio's QTripStatic micro-experience; all five modules completed."],
     screenshots: [
       {
         src: "/projects/qtripstatic/home.jpg",
@@ -807,14 +807,15 @@ export const projects: Project[] = [
       "Responsive design across breakpoints",
     ],
     improvements: [
-      "Publish the source to GitHub and link the deployed site here.",
       "Make the city search input functional with JavaScript.",
       "Load cities and adventures from data instead of hard-coded markup.",
+      "Compress the images for faster loading.",
     ],
-    sources: [{ label: "Crio portfolio record", href: "https://www.crio.do/learn/portfolio/vsr4661/" }],
-    missing: [
-      "Public repository (github.com/Vsr4661/qtrip-static is empty) and deployment URL.",
-      "Your own notes on challenges faced and lessons learned.",
+    sources: [
+      { label: "Repository source", href: "https://github.com/Vsr4661/qtrip-static" },
+      { label: "Live deployment", href: "https://vsr4661.github.io/qtrip-static/" },
+      { label: "Crio portfolio record", href: "https://www.crio.do/learn/portfolio/vsr4661/" },
     ],
+    missing: ["Your own notes on challenges faced and lessons learned."],
   },
 ];

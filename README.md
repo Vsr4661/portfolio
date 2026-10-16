@@ -50,7 +50,7 @@ Project names open the case study on the live site; *code* opens the repository.
 | [**Job Portal Dashboard**](https://portfolio-vsr4661s-projects.vercel.app/projects/job-portal) ([code](https://github.com/Vsr4661/job_portal_dashboard)) | Two-role job board: candidates apply, admins manage listings | React, Tailwind CSS, Context API |
 | [**Dubai Mall Sales Deck**](https://portfolio-vsr4661s-projects.vercel.app/projects/dubai-mall-deck) ([code](https://github.com/Vsr4661/dubai-mall-deck)) | Interactive sales-deck concept (interview assignment) | React, Tailwind CSS, Framer Motion |
 | [**Instagram Clone**](https://portfolio-vsr4661s-projects.vercel.app/projects/instagram-clone) ([code](https://github.com/Vsr4661/Instagram-clone-)) | Feed, stories, reels and chat screens | React Native, Expo |
-| [**QTripStatic**](https://portfolio-vsr4661s-projects.vercel.app/projects/qtripstatic) | Responsive travel site (Crio micro-experience) | HTML, CSS, Bootstrap |
+| [**QTripStatic**](https://portfolio-vsr4661s-projects.vercel.app/projects/qtripstatic) ([code](https://github.com/Vsr4661/qtrip-static)) | Responsive travel site (Crio micro-experience) | HTML, CSS, Bootstrap |
 
 ## Features
 
