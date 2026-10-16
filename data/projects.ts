@@ -317,10 +317,11 @@ export const projects: Project[] = [
     kind: "Full-stack web app",
     date: "May – Oct 2026",
     categories: ["full-stack"],
-    stack: ["Next.js 14", "TypeScript", "Prisma", "SQLite", "Tailwind CSS", "Razorpay", "Printrove API", "Resend", "Zod", "Node test runner"],
-    status: "In development · private repo",
+    stack: ["Next.js 14", "TypeScript", "Prisma", "PostgreSQL", "Tailwind CSS", "Razorpay", "Printrove API", "Resend", "Zod", "Node test runner"],
+    status: "In development",
+    repo: "https://github.com/Vsr4661/overfit-ecpmmerce",
     linkNotes: [
-      "Not deployed yet, and the source is in a private repository, so there is no public demo or code link.",
+      "Not deployed yet, so there is no live demo.",
       "A team project with two collaborators. Per the commit history, I built the October 2026 rebuild: database, checkout, authentication, admin panel, discount codes, order emails, webhooks and tests.",
       "Screenshots are from a local run in test mode (no real payment) with the repository's sample catalogue, whose product photos come from Unsplash. The order shown is a test order.",
     ],
@@ -426,7 +427,7 @@ export const projects: Project[] = [
     ],
     architecture: {
       summary:
-        "A Next.js 14 App Router app. Store pages and admin pages read from Prisma (SQLite locally), API routes handle checkout, auth, discounts and webhooks, and middleware protects the admin area. External services are Razorpay for payments, Printrove for fulfilment and Resend for email.",
+        "A Next.js 14 App Router app. Store pages and admin pages read from PostgreSQL through Prisma, API routes handle checkout, auth, discounts and webhooks, and middleware protects the admin area. External services are Razorpay for payments, Printrove for fulfilment and Resend for email.",
       flow: [
         "Cart (localStorage) → POST /api/checkout → server re-prices → PENDING order + Razorpay order",
         "Razorpay payment → /api/checkout/verify or /api/webhooks/razorpay → signature check → PAID (once)",
@@ -465,14 +466,14 @@ export const projects: Project[] = [
       "Unit tests for pricing, discounts, signatures and sessions: 17 tests, all passing",
     ],
     improvements: [
-      "Move from SQLite to Postgres for serverless hosting, then deploy.",
+      "Deploy to Vercel with Neon Postgres (the code is already prepared for it).",
       "Run with live Razorpay keys, the Razorpay webhook and Resend.",
       "Replace the in-memory rate limiter with Redis so limits hold across server instances.",
       "Add end-to-end tests for the checkout and admin flows.",
     ],
-    sources: [],
+    sources: [{ label: "Repository source", href: "https://github.com/Vsr4661/overfit-ecpmmerce" }],
     missing: [
-      "Add a live URL once deployed, and a repo link if you make the repository public.",
+      "Add the live URL once deployed.",
       "Your own notes on challenges faced and lessons learned.",
     ],
   },
