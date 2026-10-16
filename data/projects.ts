@@ -316,14 +316,15 @@ export const projects: Project[] = [
       "Overfit is the storefront for an oversized-streetwear brand, built with Next.js, Prisma and TypeScript. Customers browse, pay through Razorpay and track their orders; products are printed on demand by Printrove; and an admin panel manages orders, products and discount codes.",
     kind: "Full-stack web app",
     date: "May – Oct 2026",
-    categories: ["full-stack"],
+    categories: ["featured", "full-stack"],
     stack: ["Next.js 14", "TypeScript", "Prisma", "PostgreSQL", "Tailwind CSS", "Razorpay", "Printrove API", "Resend", "Zod", "Node test runner"],
-    status: "In development",
+    status: "Live on Vercel",
+    live: "https://overfit-tau.vercel.app/",
     repo: "https://github.com/Vsr4661/overfit-ecpmmerce",
     linkNotes: [
-      "Not deployed yet, so there is no live demo.",
+      "The live demo runs on Vercel with Neon Postgres and the sample catalogue. Checkout is closed there until Razorpay keys are added, so you can browse and fill a cart but not place an order.",
       "A team project with two collaborators. Per the commit history, I built the October 2026 rebuild: database, checkout, authentication, admin panel, discount codes, order emails, webhooks and tests.",
-      "Screenshots are from a local run in test mode (no real payment) with the repository's sample catalogue, whose product photos come from Unsplash. The order shown is a test order.",
+      "Checkout, order and admin screenshots are from a local run in test mode (no real payment) with the sample catalogue, whose product photos come from Unsplash. The order shown is a test order.",
     ],
     screenshots: [
       {
@@ -466,14 +467,16 @@ export const projects: Project[] = [
       "Unit tests for pricing, discounts, signatures and sessions: 17 tests, all passing",
     ],
     improvements: [
-      "Deploy to Vercel with Neon Postgres (the code is already prepared for it).",
-      "Run with live Razorpay keys, the Razorpay webhook and Resend.",
+      "Add Razorpay keys, the Razorpay webhook and Resend so checkout and order emails work live.",
       "Replace the in-memory rate limiter with Redis so limits hold across server instances.",
       "Add end-to-end tests for the checkout and admin flows.",
     ],
-    sources: [{ label: "Repository source", href: "https://github.com/Vsr4661/overfit-ecpmmerce" }],
+    sources: [
+      { label: "Repository source", href: "https://github.com/Vsr4661/overfit-ecpmmerce" },
+      { label: "Live deployment", href: "https://overfit-tau.vercel.app/" },
+    ],
     missing: [
-      "Add the live URL once deployed.",
+      "Swap the sample catalogue for your real Printrove products once synced.",
       "Your own notes on challenges faced and lessons learned.",
     ],
   },
