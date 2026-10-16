@@ -1,0 +1,139 @@
+@import "tailwindcss";
+
+/*
+ * VAIBHAV ORIGINALS design tokens.
+ * Contrast on --color-canvas: text 18.1:1, muted 8.9:1, accent-ink 5.6:1.
+ * The raw accent (#E50914) is used for fills and large display type only;
+ * small red text uses --color-accent-ink so it stays above 4.5:1.
+ */
+@theme {
+  --color-canvas: #141414;
+  --color-surface: #242424;
+  --color-surface-2: #2f2f2f;
+  --color-line: #3a3a3a;
+  --color-ink: #ffffff;
+  --color-muted: #b3b3b3;
+  --color-subtle: #8c8c8c;
+  --color-accent: #e50914;
+  --color-accent-hover: #f6121d;
+  --color-accent-ink: #ff5a63;
+  --color-success: #46d369;
+
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-archivo), var(--font-inter), ui-sans-serif, sans-serif;
+
+  --breakpoint-xs: 26rem;
+
+  --radius-card: 0.375rem;
+
+  --ease-cinema: cubic-bezier(0.22, 1, 0.36, 1);
+
+  --animate-drift: drift 24s ease-in-out infinite alternate;
+
+  @keyframes drift {
+    0% {
+      transform: translate3d(0, 0, 0) scale(1.06);
+    }
+    100% {
+      transform: translate3d(-2%, -1.5%, 0) scale(1.12);
+    }
+  }
+}
+
+@layer base {
+  html {
+    color-scheme: dark;
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    background-color: var(--color-canvas);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    overflow-x: clip;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  ::selection {
+    background-color: var(--color-accent);
+    color: var(--color-ink);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-ink);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+    /* Motion-driven entrances render in their final state immediately. */
+    [data-reveal] {
+      opacity: 1 !important;
+      transform: none !important;
+    }
+  }
+}
+
+@layer components {
+  .wordmark {
+    font-family: var(--font-display);
+    font-stretch: 72%;
+    font-weight: 800;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    line-height: 1;
+  }
+
+  .display {
+    font-family: var(--font-display);
+    font-stretch: 80%;
+    font-weight: 800;
+    letter-spacing: -0.01em;
+    line-height: 0.95;
+  }
+
+  .eyebrow {
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--color-muted);
+  }
+
+  .shell {
+    margin-inline: auto;
+    width: 100%;
+    max-width: 88rem;
+    padding-inline: 1rem;
+  }
+  @media (width >= 40rem) {
+    .shell {
+      padding-inline: 2rem;
+    }
+  }
+  @media (width >= 80rem) {
+    .shell {
+      padding-inline: 3.5rem;
+    }
+  }
+
+  /* Hide scrollbars on carousels while keeping them scrollable */
+  .no-scrollbar {
+    scrollbar-width: none;
+  }
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+}

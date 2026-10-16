@@ -1,0 +1,820 @@
+import type { Category, Project } from "@/lib/types";
+
+/**
+ * Single source of truth for every project card, row and case study.
+ * Every statement here was checked against the linked repository source,
+ * the live deployment, or the Crio portfolio record (see `sources`).
+ */
+
+export const categories: Category[] = [
+  {
+    id: "featured",
+    title: "Featured Projects",
+    description: "Deployed and publicly reviewable.",
+  },
+  {
+    id: "frontend",
+    title: "Frontend Projects",
+    description: "Interfaces, routing and client-side state.",
+  },
+  {
+    id: "full-stack",
+    title: "Full-Stack Projects",
+    description: "Server, API and database work.",
+  },
+  {
+    id: "mobile",
+    title: "Mobile Projects",
+    description: "React Native and Expo.",
+  },
+  {
+    id: "learning",
+    title: "Learning Projects",
+    description: "Guided builds that cover the fundamentals.",
+  },
+];
+
+export const projects: Project[] = [
+  {
+    slug: "fittrack",
+    title: "FitTrack",
+    tagline: "A social fitness tracker: log workouts, track progress and train with friends, with real-time updates.",
+    summary:
+      "FitTrack is a full-stack TypeScript app: a React Native (Expo) client and a Node.js/Express API backed by PostgreSQL and Redis. Users log strength and cardio workouts, follow progress and personal records, and see friends' workouts, likes and comments arrive live over Socket.IO.",
+    kind: "Full-stack mobile app",
+    date: "Oct 2026 – present",
+    categories: ["featured", "full-stack", "mobile"],
+    stack: ["React Native", "Node.js", "PostgreSQL", "TypeScript", "Expo Router", "Express 5", "Prisma", "Redis", "Socket.IO", "TanStack Query", "Zustand", "Zod", "Jest", "GitHub Actions", "Docker Compose"],
+    status: "In active development",
+    repo: "https://github.com/Vsr4661/fittrack",
+    linkNotes: [
+      "Not deployed yet: deployment is planned for a later phase. The app runs on the iOS Simulator or Expo Go, and the API runs locally with Docker Compose.",
+      "Screenshots were captured on the iOS Simulator in Expo Go with demo data. The blue gear is Expo Go's developer menu, not part of the app.",
+    ],
+    cover: {
+      src: "/projects/fittrack/cover.jpg",
+      alt: "Three FitTrack screens side by side: the active workout logger for a push day, the home dashboard with a day streak and weekly goal ring, and the progress screen with a weekly volume chart and personal records.",
+      width: 1600,
+      height: 1000,
+      device: "desktop",
+      caption: "Workout logger, home dashboard and progress (real screens, composed)",
+    },
+    screenshots: [
+      {
+        src: "/projects/fittrack/home.jpg",
+        alt: "FitTrack home dashboard with a greeting, a one-day streak card, a 3 of 4 weekly goal ring, a Resume workout button, Progress and Leaderboard shortcuts and recent workouts.",
+        width: 600,
+        height: 1304,
+        device: "mobile",
+        caption: "Home: streak and weekly goal ring",
+      },
+      {
+        src: "/projects/fittrack/logger.jpg",
+        alt: "Active workout logger for 'Push day' with a privacy selector (Everyone, Followers, Only me), bench press sets with a warmup row and completed checkmarks, and a rest timer above the Finish workout button.",
+        width: 600,
+        height: 1304,
+        device: "mobile",
+        caption: "Logger: sets, warmups and rest timer",
+      },
+      {
+        src: "/projects/fittrack/progress.jpg",
+        alt: "Progress screen with totals for workouts, volume and workouts per week, a 12-week weekly volume bar chart, and a list of personal records with a 'New' badge on bench press.",
+        width: 600,
+        height: 1304,
+        device: "mobile",
+        caption: "Progress: 12-week chart and records",
+      },
+      {
+        src: "/projects/fittrack/new-pr.jpg",
+        alt: "Workout detail showing a 'New personal record! Bench Press: 90 kg × 5' banner with confetti, workout stats and the set list.",
+        width: 600,
+        height: 1304,
+        device: "mobile",
+        caption: "New personal record celebration",
+      },
+      {
+        src: "/projects/fittrack/leaderboard.jpg",
+        alt: "Leaderboard for the last 7 days by volume, with a podium for the top three and a ranked list of followed users; the current user is third.",
+        width: 600,
+        height: 1304,
+        device: "mobile",
+        caption: "Leaderboard: you vs people you follow",
+      },
+      {
+        src: "/projects/fittrack/feed.jpg",
+        alt: "Social feed of followed users' workouts with likes and comments, and an orange 'New workouts' pill at the top.",
+        width: 600,
+        height: 1304,
+        device: "mobile",
+        caption: "Feed with a live 'New workouts' pill",
+      },
+      {
+        src: "/projects/fittrack/home-dark.jpg",
+        alt: "FitTrack home dashboard in dark mode.",
+        width: 600,
+        height: 1304,
+        device: "mobile",
+        caption: "Dark mode",
+      },
+    ],
+    purpose:
+      "Build a production-style fitness app end to end — mobile client, API, database, caching, real-time events, tests and CI — with the security and correctness details a real product needs.",
+    goals: [
+      "Make logging fast and safe to use mid-set, even if the app is killed.",
+      "Show progress, streaks and personal records that are correct across time zones.",
+      "Add social features without ever leaking private workouts.",
+      "Push live updates without making the app depend on them.",
+      "Back the critical rules with automated tests in CI.",
+    ],
+    features: [
+      { title: "Workout logging", detail: "Strength sets (weight × reps) with warmups and cardio sets (distance + time), large touch targets, haptics, swipe to delete, and per-workout privacy (Everyone, Followers, Only me)." },
+      { title: "Crash-safe drafts and rest timer", detail: "The in-progress workout is saved on the device with versioned migrations, and the rest timer stores an end time so it survives backgrounding." },
+      { title: "Progress and records", detail: "Day streak and weekly goal ring computed on the device in the user's time zone, a 12-week volume chart, and personal records with a confetti celebration only for a genuine new record." },
+      { title: "Leaderboard", detail: "You vs people you follow over rolling 7 or 30 days, by volume or workout count." },
+      { title: "Social", detail: "Follows, a feed, likes, comments and user search, all filtered by the same visibility rule." },
+      { title: "Real-time updates", detail: "Socket.IO pushes live likes and comments, notification toasts and a 'New workouts' pill in the feed." },
+      { title: "Authentication", detail: "JWT access tokens with rotating refresh tokens, reuse detection, argon2 password hashing, secure on-device token storage and rate-limited auth routes." },
+      { title: "Design system and accessibility", detail: "Tokens, light/dark/system themes, the Inter typeface, Dynamic Type, Reduce Motion and screen-reader support." },
+    ],
+    architecture: {
+      summary:
+        "An npm-workspaces monorepo. The Expo app uses TanStack Query for server state and Zustand for client state. The Express 5 API is organised by module (auth, users, workouts, social, stats), validates input with Zod, stores data in PostgreSQL through Prisma, and uses Redis for caching and rate limiting. Socket.IO shares the REST token check.",
+      flow: [
+        "Expo app → axios (refresh interceptor) → Express 5 API",
+        "API modules: auth · users · workouts · social · stats",
+        "Prisma → PostgreSQL 17   |   Redis 7 → cache + rate limits",
+        "Socket.IO → 'something changed' hints → app refetches via REST",
+        "GitHub Actions → typecheck, build and test both apps on every push",
+      ],
+    },
+    challenges: [
+      {
+        problem: "Private workouts must stay hidden in every list, count, detail page, like, comment, leaderboard and live event.",
+        solution: "One visibleTo(viewerId) Prisma where-fragment used everywhere; hidden workouts return 404 rather than 403 so their existence isn't leaked.",
+      },
+      {
+        problem: "A stolen refresh token could keep a session alive indefinitely.",
+        solution: "Rotate the refresh token on every use, store tokens hashed, and revoke the whole token family when an old token is replayed.",
+      },
+      {
+        problem: "Real-time events can be missed while a phone is offline, and your own actions echo back to you.",
+        solution: "Treat socket events as hints and REST as the source of truth: refetch on reconnect, and set like counts from the server's absolute value instead of adding 1.",
+      },
+      {
+        problem: "A socket connection could outlive a revoked or expired session.",
+        solution: "Reuse the REST token check in the handshake and disconnect the socket when its access token expires.",
+      },
+      {
+        problem: "Personal records need the heaviest set per exercise, with ties resolved consistently.",
+        solution: "A single Postgres DISTINCT ON query, tie-broken by reps and then the earliest date, so repeating a record isn't counted as new.",
+      },
+    ],
+    demonstrates: [
+      "End-to-end TypeScript across a React Native client and a Node.js API",
+      "Relational data modelling and migrations with Prisma and PostgreSQL",
+      "Secure authentication with token rotation and reuse detection",
+      "Real-time features with Socket.IO and a cache-consistent client",
+      "Automated testing: 99 server and 93 mobile tests, run in CI on every push",
+    ],
+    improvements: [
+      "Photo uploads to S3 with pre-signed URLs (planned).",
+      "Push notifications with Expo Push (planned).",
+      "Deployment of the API and a public build of the app (planned).",
+      "Timed exercises such as planks, and records for bodyweight and cardio.",
+      "Verify on Android devices and add tablet layouts.",
+    ],
+    sources: [
+      { label: "Repository source", href: "https://github.com/Vsr4661/fittrack" },
+      { label: "CI runs", href: "https://github.com/Vsr4661/fittrack/actions/workflows/ci.yml" },
+    ],
+    missing: [
+      "Add the live/deployed URL once the API and app are deployed.",
+      "Your own notes on challenges faced and lessons learned.",
+    ],
+  },
+  {
+    slug: "techzone",
+    title: "TechZone",
+    tagline: "A React storefront with live product data, URL search and a persistent cart.",
+    summary:
+      "TechZone is a responsive e-commerce front end. It loads products from a public REST API, filters them through a search query stored in the URL, and keeps the cart in React Context so it survives page refreshes.",
+    kind: "Web app",
+    date: "Mar 2026",
+    categories: ["featured", "frontend"],
+    stack: ["React 19", "Vite", "React Router", "Tailwind CSS v4", "Context API", "Fetch API", "localStorage", "Lucide React"],
+    status: "Live on Vercel",
+    live: "https://ecommerce-store-one-zeta.vercel.app/",
+    repo: "https://github.com/Vsr4661/Ecommerce_store",
+    linkNotes: [
+      "Open the live demo from its home page. Direct links to inner pages such as /cart currently return a 404 because the deployment has no single-page-app rewrite.",
+    ],
+    screenshots: [
+      {
+        src: "/projects/techzone/home.jpg",
+        alt: "TechZone home page with a floating pill navigation bar, a blue gradient hero reading 'Elevate Your Lifestyle with Premium Tech', and a grid of product cards with Add to Cart buttons.",
+        width: 1600,
+        height: 1000,
+        device: "desktop",
+        caption: "Home: product grid loaded from the DummyJSON API",
+      },
+      {
+        src: "/projects/techzone/product.jpg",
+        alt: "TechZone product detail page for Essence Mascara Lash Princess, showing the product image, price, rating, description, guarantee notes and an Add to Cart button.",
+        width: 1600,
+        height: 1000,
+        device: "desktop",
+        caption: "Product detail route: /product/:id",
+      },
+      {
+        src: "/projects/techzone/cart.jpg",
+        alt: "TechZone shopping cart with one item, quantity stepper, delete button and an order summary showing subtotal, free shipping and total.",
+        width: 1600,
+        height: 1000,
+        device: "desktop",
+        caption: "Cart with quantity controls and order summary",
+      },
+      {
+        src: "/projects/techzone/search.jpg",
+        alt: "TechZone home page filtered by the search term 'lip', showing a single Red Lipstick product card.",
+        width: 1600,
+        height: 1000,
+        device: "desktop",
+        caption: "Search driven by the ?q= URL parameter",
+      },
+      {
+        src: "/projects/techzone/home-mobile.jpg",
+        alt: "TechZone on a phone-sized screen with a compact header, the gradient hero, the first product card and a bottom navigation bar with Home, Profile and Cart.",
+        width: 780,
+        height: 1688,
+        device: "mobile",
+        caption: "Mobile layout with bottom navigation",
+      },
+    ],
+    purpose:
+      "Build a complete shopping flow in React — browse, search, view a product, manage a cart — using real network data instead of hard-coded arrays.",
+    goals: [
+      "Fetch and render a product catalogue from a REST API with loading, error and empty states.",
+      "Share cart state across routes without prop drilling.",
+      "Keep the cart after a page refresh.",
+      "Make search shareable by storing it in the URL.",
+      "Provide distinct desktop and mobile navigation patterns.",
+    ],
+    features: [
+      { title: "Product catalogue", detail: "Products are fetched from dummyjson.com/products on load, with a spinner while loading and an error message if the request fails." },
+      { title: "URL-based search", detail: "The search box writes to the ?q= query parameter; the product list filters titles against it, and an empty result shows 'No products found'." },
+      { title: "Product detail route", detail: "/product/:id reads the id with useParams and fetches that single product." },
+      { title: "Cart management", detail: "Add to cart, increase and decrease quantity (minimum 1), remove items, and see the subtotal and item count." },
+      { title: "Cart persistence", detail: "Cart items are written to localStorage under techzone_cart and restored on the first render." },
+      { title: "Responsive navigation", detail: "A floating pill navbar with search on desktop and a bottom navigation bar on mobile, with a live cart badge." },
+      { title: "Login screen", detail: "A styled login form. It is interface-only: submission is prevented and no authentication is performed." },
+    ],
+    architecture: {
+      summary:
+        "A Vite single-page app. A CartProvider wraps the router; pages read and update the cart through useContext. Product data is fetched inside the page that needs it.",
+      flow: [
+        "main.jsx mounts BrowserRouter → CartProvider → App",
+        "App fetches /products once and filters by the ?q= search param",
+        "ProductCard and ProductDetails call addToCart from CartContext",
+        "CartContext syncs cartItems to localStorage on every change",
+        "Navbar derives the badge count from cartItems",
+      ],
+    },
+    challenges: [
+      {
+        problem: "The first version used the FakeStore API; switching to DummyJSON broke the product list because DummyJSON wraps results in an object.",
+        solution: "Read data.products instead of the raw response (commit 'fix: resolve tailwind css and dummyjson fetch errors').",
+      },
+      {
+        problem: "Restoring the cart from localStorage in an effect would render an empty cart first and could overwrite saved data.",
+        solution: "Load the saved cart in a lazy useState initialiser, then persist changes in a separate effect.",
+      },
+      {
+        problem: "Search needed to work from both the desktop and mobile search inputs and survive navigation.",
+        solution: "Store the term in the URL with useSearchParams so every component reads the same source.",
+      },
+    ],
+    demonstrates: [
+      "React Router with dynamic segments and query parameters",
+      "Global state with the Context API and immutable updates",
+      "Handling loading, error and empty states for network data",
+      "Responsive layouts with Tailwind CSS v4",
+    ],
+    improvements: [
+      "Add a vercel.json rewrite so deep links such as /cart load directly.",
+      "Debounce search input and move filtering to the API's search endpoint.",
+      "Add product categories and sorting.",
+      "Connect the login screen to a real authentication provider.",
+    ],
+    sources: [
+      { label: "Repository source", href: "https://github.com/Vsr4661/Ecommerce_store" },
+      { label: "Live deployment", href: "https://ecommerce-store-one-zeta.vercel.app/" },
+    ],
+    missing: ["Your own notes on challenges faced and lessons learned."],
+  },
+  {
+    slug: "routecast",
+    title: "RouteCast",
+    tagline: "A React + Django app that picks the safest truck route from forecast weather, load weight and travel time.",
+    summary:
+      "RouteCast plans three route options for a truck trip, reads the weather forecast at the time the truck will actually reach each checkpoint, scores the risk with load-aware rules, and recommends a route. A 0–48 hour heatmap shows how conditions along the corridor change.",
+    kind: "Full-stack web app",
+    date: "Oct 2026",
+    categories: ["full-stack", "featured"],
+    stack: ["React 18", "Django 5", "MapLibre GL", "TypeScript", "Python", "Django REST Framework", "Vite", "OSRM", "Open-Meteo", "Docker", "Render"],
+    status: "Live on Render",
+    live: "https://routecast-8pwa.onrender.com/",
+    repo: "https://github.com/Vsr4661/weather-aware-truck-routing",
+    linkNotes: [
+      "Hosted on Render's free plan: the first visit after about 15 idle minutes takes 30–60 seconds while the server wakes up.",
+      "Built to a written specification. Routing uses the public OSRM car profile adjusted for truck speeds, so truck-specific restrictions such as bridge heights are not modelled.",
+    ],
+    screenshots: [
+      {
+        src: "/projects/routecast/heatmap.jpg",
+        alt: "RouteCast planning a Chicago to Denver trip: three routes drawn on a map of the central United States, a weather-risk heatmap along the corridor, truck markers on each route, and a forecast slider set to 18 hours after departure.",
+        width: 1600,
+        height: 1000,
+        device: "desktop",
+        caption: "Corridor heatmap, scrubbed to departure +18 h; trucks move along each route",
+      },
+      {
+        src: "/projects/routecast/routes.jpg",
+        alt: "RouteCast trip form with origin, destination, departure, load weight and checkpoint spacing, a recommendation panel for Route A via I-80, and route cards comparing distance, driving time, stops and arrival.",
+        width: 1600,
+        height: 1000,
+        device: "desktop",
+        caption: "Three route options with a recommendation and per-route risk summary",
+      },
+      {
+        src: "/projects/routecast/mobile.jpg",
+        alt: "RouteCast on a phone-sized screen showing the recommended route, three stacked route cards, a 'leave later' risk chart and the first weather checkpoints.",
+        width: 780,
+        height: 1688,
+        device: "mobile",
+        caption: "Mobile: route cards, departure-delay chart and checkpoints",
+      },
+    ],
+    purpose:
+      "Help a truck driver choose between route options by combining weather forecasts at each point of the trip with load weight and travel time, and explain why one route is recommended.",
+    goals: [
+      "Offer three distinct route options for any trip.",
+      "Read the forecast at each checkpoint for the truck's estimated arrival time, not the departure time.",
+      "Score risk from wind, rain and snow thresholds, escalated by load weight.",
+      "Recommend a route and say which criterion decided it.",
+      "Show routes, checkpoints, risk and a time-based heatmap on an interactive map.",
+    ],
+    features: [
+      { title: "Three route options", detail: "Uses OSRM alternatives; when fewer than three come back, extra candidates are forced through offset via-points and filtered for overlap, detour length and loops." },
+      { title: "Weather at the truck's ETA", detail: "Checkpoints every 10, 25 or 50 miles. Each ETA comes from a truck timeline with a 65 mph cap and optional hours-of-service breaks, and the forecast is read for that hour." },
+      { title: "Load-aware risk rules", detail: "Wind, rain and snow thresholds produce a level from Low to No Travel; heavier loads escalate high-wind levels. Implemented as pure, tested functions." },
+      { title: "Explained recommendation", detail: "Routes are ranked by No Travel, Severe and High miles, average risk, then travel time, with tolerances so tiny risk differences don't justify long detours. The UI states the deciding criterion." },
+      { title: "Corridor heatmap", detail: "49 hourly frames (0–48 h) for Risk, Wind, Gusts, Rain and Snow, with play and scrub controls and trucks that move along each route." },
+      { title: "Place search", detail: "Autocomplete backed by Photon, with a Nominatim fallback." },
+      { title: "Departure advice", detail: "Suggests leaving later when that reduces High, Severe or No Travel miles." },
+      { title: "Responsive, themed UI", detail: "Follows the system light or dark theme, with a dedicated mobile layout." },
+    ],
+    architecture: {
+      summary:
+        "A Vite + React + TypeScript front end talks to a stateless Django REST Framework API. The API calls OSRM for routes, Open-Meteo for forecasts (with a MET Norway fallback) and Photon/Nominatim for geocoding, caching responses in a shared file cache. One Docker image serves both, deployed on Render.",
+      flow: [
+        "TripForm → POST /api/plan → planner.build_plan",
+        "routing.get_route_options → OSRM (+ via-point alternatives)",
+        "timeline.build_timeline → truck ETAs and HOS stops",
+        "weather.fetch_hourly → Open-Meteo, MET Norway fallback",
+        "risk.assess → recommendation.recommend → ranked routes",
+        "MapView → POST /api/heatmap → corridor grid × 49 hours",
+      ],
+    },
+    challenges: [
+      {
+        problem: "The public OSRM server often returns only one or two alternatives, but the product needs three distinct routes.",
+        solution: "Generate extra candidates through via-points offset from the fastest route, then reject ones that overlap more than 80%, detour more than 1.6×, or double back.",
+      },
+      {
+        problem: "On shared free hosting, other apps on the same IP can exhaust Open-Meteo's free quota.",
+        solution: "Fall back automatically to MET Norway for 10 minutes, converting its units and precipitation buckets to match Open-Meteo's.",
+      },
+      {
+        problem: "Updating map geometry for every forecast hour made scrubbing the 48-hour heatmap slow.",
+        solution: "Paint each hour into a small canvas on a regular Web-Mercator grid, pre-render frames when idle, and swap a single image source while scrubbing.",
+      },
+      {
+        problem: "Route labels stacked on top of each other where routes share a corridor.",
+        solution: "Adjusted label placement so labels stay separate on shared stretches (commit 'Map: keep route labels from stacking').",
+      },
+    ],
+    demonstrates: [
+      "Designing a REST API in Django and consuming it from a typed React client",
+      "Integrating and caching several third-party APIs, with graceful fallback",
+      "Turning a written rules table into tested, pure functions (55 backend tests)",
+      "Interactive WebGL mapping and performance work with MapLibre GL",
+      "Containerised deployment with Docker on Render",
+    ],
+    improvements: [
+      "Use a truck-aware router (for example OpenRouteService driving-hgv) to respect height and hazmat restrictions.",
+      "Add a paid weather key or self-hosted OSRM for heavier use.",
+      "Add the walkthrough video link to the README.",
+    ],
+    sources: [
+      { label: "Repository source", href: "https://github.com/Vsr4661/weather-aware-truck-routing" },
+      { label: "Live deployment", href: "https://routecast-8pwa.onrender.com/" },
+    ],
+    missing: [
+      "README says 50 tests; the suite currently has 55 (all passing) — update the README.",
+      "Optional: a Loom walkthrough link (README placeholder).",
+      "Your own notes on challenges faced and lessons learned.",
+    ],
+  },
+  {
+    slug: "job-portal",
+    title: "Job Portal Dashboard",
+    tagline: "A two-role job board: candidates search and apply, admins post and manage listings.",
+    summary:
+      "A React job portal with a candidate view and an admin view. Candidates search, filter, save and apply for jobs; admins create, edit and delete listings and see who applied. Job data is fetched from a public API and mapped into job records.",
+    kind: "Web app",
+    date: "Apr 2026",
+    categories: ["featured", "frontend"],
+    stack: ["React 19", "Vite", "React Router", "Tailwind CSS v4", "Context API", "Fetch API", "Lucide React"],
+    status: "Live on Vercel",
+    live: "https://job-portal-dashboard-vert.vercel.app/",
+    repo: "https://github.com/Vsr4661/job_portal_dashboard",
+    linkNotes: [],
+    screenshots: [
+      {
+        src: "/projects/job-portal/home.jpg",
+        alt: "Job Portal landing page with the headline 'Find your dream job today', Browse Jobs and Post a Job buttons, and three statistic cards.",
+        width: 1600,
+        height: 1000,
+        device: "desktop",
+        caption: "Landing page",
+      },
+      {
+        src: "/projects/job-portal/jobs.jpg",
+        alt: "Job listings page with a search bar, a Filters sidebar for job type and location, and a grid of job cards showing title, location, type, salary range and Apply Now buttons.",
+        width: 1600,
+        height: 1000,
+        device: "desktop",
+        caption: "Search, filters and paginated job cards",
+      },
+      {
+        src: "/projects/job-portal/dashboard.jpg",
+        alt: "Admin Dashboard in Admin Mode with a Post New Job button and a Manage Jobs table listing job title, location, type and edit and delete actions.",
+        width: 1600,
+        height: 1000,
+        device: "desktop",
+        caption: "Admin mode: manage listings",
+      },
+      {
+        src: "/projects/job-portal/jobs-mobile.jpg",
+        alt: "Job listings on a phone-sized screen with a collapsed menu, full-width search and the filters stacked above the results.",
+        width: 780,
+        height: 1688,
+        device: "mobile",
+        caption: "Mobile: filters stack above results",
+      },
+    ],
+    purpose:
+      "Model the two sides of a hiring product in one front end and practise shared state, role-based views and list tooling (search, filters, pagination).",
+    goals: [
+      "Separate what a candidate and an admin can see and do.",
+      "Make a long list usable with search, filters and pagination.",
+      "Support create, edit and delete without a backend.",
+      "Work on mobile and desktop, in light and dark themes.",
+    ],
+    features: [
+      { title: "Job feed from an API", detail: "Fetches 100 posts from jsonplaceholder.typicode.com and deterministically maps each id to a title, location, type, salary range and posted date." },
+      { title: "Debounced search", detail: "A custom useDebounce hook delays filtering by 500 ms while typing." },
+      { title: "Filters and pagination", detail: "Filter by job type and location; results are paginated nine per page and reset to page 1 when the search or filters change." },
+      { title: "Save and apply", detail: "Candidates can bookmark jobs and apply once per job; Saved and Applied pages list them." },
+      { title: "Role toggle", detail: "A User/Admin mode switch changes the navigation and guards role-specific pages." },
+      { title: "Admin CRUD", detail: "Admins post new jobs and edit existing ones through a modal form, and delete jobs from the Manage Jobs table." },
+      { title: "Applicants table", detail: "Admins see an applicants list; applying as a candidate appends an entry. Seed applicants are sample data." },
+      { title: "Dark mode", detail: "A toggle adds or removes the dark class on the root element; Tailwind dark: variants style both themes." },
+    ],
+    architecture: {
+      summary:
+        "A Vite single-page app with a JobProvider holding jobs, saved and applied lists, the current role and applicants. Pages consume it through useContext. State is in memory, so it resets on refresh.",
+      flow: [
+        "JobProvider calls fetchJobs() → maps API posts into job objects",
+        "Jobs page: debounced search + filters → useMemo → paginate (9/page)",
+        "JobCard → toggleSaveJob / applyForJob",
+        "Dashboard (admin) → Modal + JobForm → addJob / editJob / deleteJob",
+        "vercel.json rewrites all paths to index.html for client routing",
+      ],
+    },
+    challenges: [
+      {
+        problem: "No public jobs API was used, but the UI needed realistic, varied listings.",
+        solution: "Map JSONPlaceholder posts to job records using the post id to pick title, location, type and salary, so data is stable between reloads.",
+      },
+      {
+        problem: "Filtering 100 records on every keystroke and keeping pagination valid.",
+        solution: "Debounce the search term, memoise the filtered list with useMemo, and reset the page when inputs change.",
+      },
+      {
+        problem: "Deep links to client-side routes 404 on a static host.",
+        solution: "Add a vercel.json rewrite that serves index.html for every path.",
+      },
+    ],
+    demonstrates: [
+      "Role-based UI and route guarding on the client",
+      "Custom hooks (useDebounce) and memoised derived state",
+      "Create, update and delete flows with a reusable modal form",
+      "Dark mode with Tailwind's class strategy",
+    ],
+    improvements: [
+      "Persist saved jobs, applications and admin edits (localStorage or a backend).",
+      "Replace the role toggle with real authentication and authorisation.",
+      "Fetch real job data from an API that supports server-side search and pagination.",
+      "Remember the dark-mode preference between visits.",
+    ],
+    sources: [
+      { label: "Repository source", href: "https://github.com/Vsr4661/job_portal_dashboard" },
+      { label: "Live deployment", href: "https://job-portal-dashboard-vert.vercel.app/" },
+    ],
+    missing: ["Your own notes on challenges faced and lessons learned."],
+  },
+  {
+    slug: "dubai-mall-deck",
+    title: "Dubai Mall Sales Deck",
+    tagline: "A cinematic, single-page interactive sales deck concept for retail tenants, sponsors and event partners.",
+    summary:
+      "An interactive, browser-based sales presentation built as an interview assignment. It replaces a stack of PDFs and videos with one non-linear page: visitors jump between retail, luxury, dining, events, sponsorship and leasing sections, and every call to action opens a pre-filled enquiry form.",
+    kind: "Web app",
+    date: "May 2026",
+    categories: ["frontend"],
+    stack: ["React 19", "Vite", "Tailwind CSS v4", "Framer Motion", "React Router", "IntersectionObserver"],
+    status: "Live on Vercel",
+    live: "https://dubai-mall-deck-rho.vercel.app/",
+    repo: "https://github.com/Vsr4661/dubai-mall-deck",
+    linkNotes: [
+      "An unofficial concept built for an interview assignment; not affiliated with The Dubai Mall or its owners. Figures in the deck are illustrative, and imagery is from Unsplash.",
+      "The enquiry form is front-end only: it validates input and shows a confirmation, but does not send data anywhere.",
+    ],
+    screenshots: [
+      {
+        src: "/projects/dubai-mall-deck/why.jpg",
+        alt: "Dark, gold-accented deck section titled 'A Global Destination' with large statistic tiles, animated visitor demographic bars, an aerial photo of the Burj Al Arab and location highlights.",
+        width: 1600,
+        height: 1000,
+        device: "desktop",
+        caption: "Key statistics and animated demographic bars",
+      },
+      {
+        src: "/projects/dubai-mall-deck/retail.jpg",
+        alt: "Retail section titled '1,200+ Stores, One Destination' with All, Luxury, Fashion and Lifestyle filter tabs above a grid of brand image cards.",
+        width: 1600,
+        height: 1000,
+        device: "desktop",
+        caption: "Filterable brand grid",
+      },
+      {
+        src: "/projects/dubai-mall-deck/sponsorship.jpg",
+        alt: "Sponsorship section titled 'Put Your Brand At the Centre' with audience statistics and three partnership tier cards, each with a list of benefits and an enquiry button.",
+        width: 1600,
+        height: 1000,
+        device: "desktop",
+        caption: "Three-tier sponsorship packages (illustrative figures)",
+      },
+      {
+        src: "/projects/dubai-mall-deck/enquiry.jpg",
+        alt: "Enquiry modal titled 'Let's Start a Conversation' with name, company, email, interest and message fields over a dimmed page.",
+        width: 1600,
+        height: 1000,
+        device: "desktop",
+        caption: "Global enquiry modal, pre-filled from the clicked call to action",
+      },
+    ],
+    purpose:
+      "Design a single interactive page that a sales team could screen-share or send as a link, letting each prospect explore only the parts relevant to them.",
+    goals: [
+      "Serve three audiences — retail tenants, brand sponsors and event partners — from one page.",
+      "Allow non-linear navigation instead of a fixed slide order.",
+      "Make every call to action lead to one consistent enquiry flow.",
+      "Keep all content in data so sections can change without component edits.",
+    ],
+    features: [
+      { title: "Ten deck sections", detail: "Hero, Why This Property, Retail, Luxury, Dining, Attractions, Events, Venues, Sponsorship and Leasing, assembled from reusable section and card components." },
+      { title: "Active-section navigation", detail: "A sticky navbar highlights the current section with IntersectionObserver and jumps to any section." },
+      { title: "Filters and tabs", detail: "The retail brand grid filters by category; leasing paths switch between Luxury, Retail, F&B and Pop-Up tabs." },
+      { title: "Animated statistics", detail: "Counters animate with requestAnimationFrame and demographic bars grow when scrolled into view (Framer Motion useInView)." },
+      { title: "Global enquiry modal", detail: "One modal at the app root opens from any call to action with the matching interest pre-selected, and validates required fields." },
+      { title: "Data-driven content", detail: "Brands, dining, events, sponsorship tiers and leasing categories all live in one data module." },
+    ],
+    architecture: {
+      summary:
+        "A Vite single-page app. App owns the enquiry-modal state and passes an onEnquire callback to the navbar and sections, so any button can open the modal with context. Sections render from a shared data module.",
+      flow: [
+        "App → Navbar + Home + EnquiryModal",
+        "Home → 10 sections, each wrapped in SectionWrapper",
+        "Sections read src/data/mallData.js",
+        "CTA → onEnquire(type, detail) → modal opens pre-filled",
+      ],
+    },
+    challenges: [
+      {
+        problem: "Every section needed its own call to action, but leads should end up in one consistent form.",
+        solution: "Lift modal state to App and map each CTA to a pre-selected interest, instead of creating per-section forms.",
+      },
+      {
+        problem: "Animated counters with a third-party counter library caused a CommonJS/ESM interop problem in the Vite build.",
+        solution: "Replace it with a small requestAnimationFrame counter triggered by useInView.",
+      },
+      {
+        problem: "Embedded video autoplay is blocked or unreliable across browsers.",
+        solution: "Use a self-hosted muted, looping, inline <video> with a static image underneath as an instant fallback.",
+      },
+    ],
+    demonstrates: [
+      "Information architecture for a long, multi-audience page",
+      "Scroll-driven animation with Framer Motion and IntersectionObserver",
+      "State lifting and callback props for a global modal",
+      "Data-driven component design",
+    ],
+    improvements: [
+      "Replace the hero background video with licensed footage.",
+      "Connect the enquiry form to a CRM or email service.",
+      "Split Sponsorship and Leasing into their own routes.",
+      "Lazy-load images and the video to improve Lighthouse performance.",
+    ],
+    sources: [
+      { label: "Repository source", href: "https://github.com/Vsr4661/dubai-mall-deck" },
+      { label: "Live deployment", href: "https://dubai-mall-deck-rho.vercel.app/" },
+    ],
+    missing: [
+      "Fix the hero video: public/hero.mp4 is a screen recording of a third-party Vimeo page (player UI and someone else's video). Replace it with licensed footage or a still image.",
+      "Your own notes on challenges faced and lessons learned.",
+    ],
+  },
+  {
+    slug: "instagram-clone",
+    title: "Instagram Clone",
+    tagline: "A React Native and Expo recreation of a social feed, stories, reels and direct messages.",
+    summary:
+      "A mobile app built with React Native and Expo that recreates the core screens of a photo-sharing app: a feed with likes and comments, a story viewer, reels, search, profile editing and a chat screen. Content is hard-coded sample data, and the app runs locally through Expo.",
+    kind: "Mobile app",
+    date: "Jun 2026",
+    categories: ["mobile"],
+    stack: ["React Native 0.85", "Expo SDK 56", "JavaScript", "React Navigation 7", "Context API", "expo-video", "expo-image-picker", "Animated API"],
+    status: "Runs locally with Expo — no public demo",
+    repo: "https://github.com/Vsr4661/Instagram-clone-",
+    linkNotes: [
+      "There is no public web demo. This is a mobile app that runs locally with Expo on a simulator or device.",
+      "Content is hard-coded sample data; there is no backend.",
+    ],
+    screenshots: [],
+    purpose:
+      "Practise React Native navigation, gesture handling and local state by rebuilding familiar social-app screens.",
+    goals: [
+      "Combine bottom-tab and stack navigation.",
+      "Build interactive feed items with local state.",
+      "Implement a full-screen story viewer with timed progress and gestures.",
+      "Play vertical video reels.",
+    ],
+    features: [
+      { title: "Home feed", detail: "FlatList of posts with like/unlike (with a like counter), a bookmark toggle, and adding comments to a post." },
+      { title: "Stories", detail: "A horizontal story row opens a full-screen viewer with an animated progress bar and swipe-down-to-close (PanResponder)." },
+      { title: "Reels", detail: "Vertical, paged reels played with expo-video, with a like button per reel." },
+      { title: "Search", detail: "Filters posts by username as you type and shows results in a grid." },
+      { title: "Create post", detail: "Picks an image from the device library with expo-image-picker, adds a caption and prepends it to the feed." },
+      { title: "Profile and edit profile", detail: "Profile screen with posts/tagged tabs; Edit Profile updates name, username and bio through ProfileContext." },
+      { title: "Messages and chat", detail: "A conversation list and a chat screen that sends messages and auto-scrolls to the newest one. The reply is simulated after one second." },
+    ],
+    architecture: {
+      summary:
+        "A native stack navigator holds a bottom-tab navigator (Home, Search, Create, Reels, Profile) plus stack screens for Edit Profile, Story Viewer, Messages and Chat. PostContext and ProfileContext share state across screens.",
+      flow: [
+        "App → ProfileProvider → PostProvider → RootNavigator",
+        "RootNavigator (native stack) → Tabs | EditProfile | StoryViewer | Messages | Chat",
+        "BottomTabs → Home | Search | Create | Reels | Profile",
+        "CreateScreen → setPosts([newPost, ...posts]) → Home feed updates",
+        "Static data modules: posts, stories, reels, chats",
+      ],
+    },
+    challenges: [
+      {
+        problem: "Stories need to advance automatically and close with a natural gesture.",
+        solution: "Drive the progress bar with Animated.timing and track vertical drags with PanResponder, springing back or dismissing on release.",
+      },
+      {
+        problem: "New chat messages can appear below the visible area.",
+        solution: "Keep a FlatList ref and call scrollToEnd when content changes.",
+      },
+      {
+        problem: "A new post created on one tab must appear in the feed on another.",
+        solution: "Lift posts into PostContext so the Create and Home screens share one list.",
+      },
+    ],
+    demonstrates: [
+      "Nested navigation (native stack + bottom tabs) with route params",
+      "Gesture and animation work with PanResponder and the Animated API",
+      "Video playback with expo-video",
+      "Device media access with expo-image-picker",
+    ],
+    improvements: [
+      "Add a saved-posts collection (bookmarks currently toggle an icon only).",
+      "Persist posts, likes and comments with a backend or local storage.",
+      "Add authentication and real-time messaging.",
+      "Publish an Expo build or a short screen recording so reviewers can see it running.",
+    ],
+    sources: [{ label: "Repository source", href: "https://github.com/Vsr4661/Instagram-clone-" }],
+    missing: [
+      "Screenshots or a short screen recording from a simulator or device.",
+      "Your own notes on challenges faced and lessons learned.",
+    ],
+  },
+  {
+    slug: "qtripstatic",
+    title: "QTripStatic",
+    tagline: "A responsive, multi-page travel site built with HTML, CSS and Bootstrap.",
+    summary:
+      "QTripStatic is a Crio micro-experience: a static travel website with a landing page, an adventures grid and an adventure detail page. It covers semantic layout, Bootstrap's grid and utilities, Flexbox and responsive design.",
+    kind: "Static website",
+    date: "Oct 2026",
+    categories: ["learning", "frontend"],
+    stack: ["HTML", "CSS", "Bootstrap 5", "CSS Flexbox", "CSS Positioning", "Responsive Design", "Developer Tools"],
+    status: "Crio micro-experience — 5 modules completed",
+    linkNotes: [
+      "No public demo or repository link is available yet: the Crio record has no demo or repo link, and github.com/Vsr4661/qtrip-static has no commits.",
+    ],
+    screenshots: [
+      {
+        src: "/projects/qtripstatic/home.jpg",
+        alt: "QTrip landing page with a navigation bar, a night-time city skyline hero reading 'Welcome to QTrip' with a city search input, and four city tiles for Bengaluru, Dubai, Goa and Kolkata.",
+        width: 1600,
+        height: 1000,
+        device: "desktop",
+        caption: "Landing page: hero and city grid",
+      },
+      {
+        src: "/projects/qtripstatic/adventures.jpg",
+        alt: "QTrip 'Explore all adventures' page with a four-column grid of adventure cards, each showing a photo, a name and a price in rupees.",
+        width: 1600,
+        height: 1000,
+        device: "desktop",
+        caption: "Adventures grid",
+      },
+      {
+        src: "/projects/qtripstatic/detail.jpg",
+        alt: "QTrip Resort adventure detail page with a photo gallery, an 'About the Experience' description and a 'Sold Out!' booking panel.",
+        width: 1600,
+        height: 1000,
+        device: "desktop",
+        caption: "Adventure detail page",
+      },
+      {
+        src: "/projects/qtripstatic/home-mobile.jpg",
+        alt: "QTrip landing page on a phone-sized screen with a collapsed navigation toggle, the hero and search input, and the first city tile stacked full width.",
+        width: 780,
+        height: 1688,
+        device: "mobile",
+        caption: "Mobile: one tile per row",
+      },
+    ],
+    purpose:
+      "Learn the fundamentals of building and deploying a responsive website without a framework, following Crio's QTripStatic micro-experience.",
+    goals: [
+      "Lay out a page with a navbar, hero and content sections.",
+      "Build reusable card components.",
+      "Create a responsive grid that adapts from phone to desktop.",
+      "Build an adventure detail page.",
+      "Deploy a static site.",
+    ],
+    features: [
+      { title: "Landing page", detail: "Bootstrap navbar with a collapsible toggler, a full-width hero with a city search input, and city tiles with overlaid names." },
+      { title: "Responsive city grid", detail: "Bootstrap columns show one tile per row on phones, two on tablets and four on desktops." },
+      { title: "Adventures grid", detail: "A grid of adventure cards with an image, a name and a price." },
+      { title: "Adventure detail", detail: "A detail page with an image gallery, a description and a reservation panel showing a sold-out state." },
+    ],
+    architecture: {
+      summary: "Plain HTML pages linked by relative paths, styled with the Bootstrap 5 CDN and a shared custom stylesheet. No JavaScript build step.",
+      flow: [
+        "index.html → city tiles link to pages/adventures/",
+        "pages/adventures/index.html → adventure cards link to pages/adventures/resort/",
+        "css/styles.css → shared custom styles on top of Bootstrap",
+      ],
+    },
+    challenges: [
+      {
+        problem: "The same city grid has to read well on a phone, a tablet and a desktop.",
+        solution: "Use Bootstrap's col-12 col-sm-6 col-lg-3 classes so the grid changes at each breakpoint without custom media queries.",
+      },
+    ],
+    demonstrates: [
+      "Semantic HTML page structure",
+      "Bootstrap grid, spacing, display and flex utilities",
+      "CSS Flexbox and positioning for overlaid text on images",
+      "Responsive design across breakpoints",
+    ],
+    improvements: [
+      "Publish the source to GitHub and link the deployed site here.",
+      "Make the city search input functional with JavaScript.",
+      "Load cities and adventures from data instead of hard-coded markup.",
+    ],
+    sources: [{ label: "Crio portfolio record", href: "https://www.crio.do/learn/portfolio/vsr4661/" }],
+    missing: [
+      "Public repository (github.com/Vsr4661/qtrip-static is empty) and deployment URL.",
+      "Your own notes on challenges faced and lessons learned.",
+    ],
+  },
+];
