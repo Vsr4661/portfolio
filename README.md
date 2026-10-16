@@ -6,17 +6,21 @@
 
 Software Developer · Web & Mobile Applications · B.Tech CSE 2025
 
-[GitHub](https://github.com/Vsr4661) · [LinkedIn](https://www.linkedin.com/in/vaibhav-singh-r-09ab28237/) · [Crio Portfolio](https://www.crio.do/learn/portfolio/vsr4661/)
+### [🔴 View the live site →](https://portfolio-vsr4661s-projects.vercel.app/)
+
+[GitHub](https://github.com/Vsr4661) · [LinkedIn](https://www.linkedin.com/in/vaibhav-singh-r-09ab28237/) · [Crio Portfolio](https://www.crio.do/learn/portfolio/vsr4661/) · [Resume (PDF)](https://portfolio-vsr4661s-projects.vercel.app/resume/Vaibhav_Singh_Rathore_Resume.pdf)
 
 </div>
 
-![Portfolio home page: name, positioning, resume and project buttons, verified stats, and a portrait](docs/readme/hero.jpg)
+[![Portfolio home page: name, positioning, resume and project buttons, verified stats, and a portrait](docs/readme/hero.jpg)](https://portfolio-vsr4661s-projects.vercel.app/)
 
 ---
 
 ## About
 
 VAIBHAV ORIGINALS is a cinematic, dark-themed portfolio inspired by the way streaming services make a catalogue easy to browse. Projects appear as poster cards in horizontal rows, each opening a full case study — while the things recruiters need (resume, contact details, skills) stay one click away.
+
+**Live:** https://portfolio-vsr4661s-projects.vercel.app/ — deployed on Vercel from the `main` branch.
 
 Every claim on the site is verified: project features are taken from each repository's source code, test counts from CI runs, and profile numbers from the Crio portfolio record. Screenshots are real captures of the actual apps.
 
@@ -36,15 +40,17 @@ Every claim on the site is verified: project features are taken from each reposi
 
 ## Featured work
 
+Project names open the case study on the live site; *code* opens the repository.
+
 | Project | What it is | Stack |
 |---|---|---|
-| [**FitTrack**](https://github.com/Vsr4661/fittrack) | Social fitness tracker with real-time updates (in development) | React Native, Expo, Node.js, Express, PostgreSQL, Prisma, Redis, Socket.IO |
-| [**RouteCast**](https://github.com/Vsr4661/weather-aware-truck-routing) | Picks the safest truck route from forecast weather, load and travel time | React, TypeScript, MapLibre GL, Django REST Framework, Docker |
-| [**TechZone**](https://github.com/Vsr4661/Ecommerce_store) | E-commerce storefront with URL search and a persistent cart | React, Vite, React Router, Tailwind CSS, Context API |
-| [**Job Portal Dashboard**](https://github.com/Vsr4661/job_portal_dashboard) | Two-role job board: candidates apply, admins manage listings | React, Tailwind CSS, Context API |
-| [**Dubai Mall Sales Deck**](https://github.com/Vsr4661/dubai-mall-deck) | Interactive sales-deck concept (interview assignment) | React, Tailwind CSS, Framer Motion |
-| [**Instagram Clone**](https://github.com/Vsr4661/Instagram-clone-) | Feed, stories, reels and chat screens | React Native, Expo |
-| **QTripStatic** | Responsive travel site (Crio micro-experience) | HTML, CSS, Bootstrap |
+| [**FitTrack**](https://portfolio-vsr4661s-projects.vercel.app/projects/fittrack) ([code](https://github.com/Vsr4661/fittrack)) | Social fitness tracker with real-time updates (in development) | React Native, Expo, Node.js, Express, PostgreSQL, Prisma, Redis, Socket.IO |
+| [**RouteCast**](https://portfolio-vsr4661s-projects.vercel.app/projects/routecast) ([code](https://github.com/Vsr4661/weather-aware-truck-routing)) | Picks the safest truck route from forecast weather, load and travel time | React, TypeScript, MapLibre GL, Django REST Framework, Docker |
+| [**TechZone**](https://portfolio-vsr4661s-projects.vercel.app/projects/techzone) ([code](https://github.com/Vsr4661/Ecommerce_store)) | E-commerce storefront with URL search and a persistent cart | React, Vite, React Router, Tailwind CSS, Context API |
+| [**Job Portal Dashboard**](https://portfolio-vsr4661s-projects.vercel.app/projects/job-portal) ([code](https://github.com/Vsr4661/job_portal_dashboard)) | Two-role job board: candidates apply, admins manage listings | React, Tailwind CSS, Context API |
+| [**Dubai Mall Sales Deck**](https://portfolio-vsr4661s-projects.vercel.app/projects/dubai-mall-deck) ([code](https://github.com/Vsr4661/dubai-mall-deck)) | Interactive sales-deck concept (interview assignment) | React, Tailwind CSS, Framer Motion |
+| [**Instagram Clone**](https://portfolio-vsr4661s-projects.vercel.app/projects/instagram-clone) ([code](https://github.com/Vsr4661/Instagram-clone-)) | Feed, stories, reels and chat screens | React Native, Expo |
+| [**QTripStatic**](https://portfolio-vsr4661s-projects.vercel.app/projects/qtripstatic) | Responsive travel site (Crio micro-experience) | HTML, CSS, Bootstrap |
 
 ## Features
 
@@ -124,12 +130,15 @@ All content lives in typed data files; cards, rows and case studies are generate
 
 ## Deploy
 
-No environment variables are required.
+Deployed on **Vercel** at https://portfolio-vsr4661s-projects.vercel.app/. Every push to `main` redeploys automatically. No environment variables are required.
+
+To deploy your own copy:
 
 1. In Vercel, choose **Add New → Project** and import this repository.
 2. Keep the detected Next.js defaults and deploy.
+3. In **Settings → Deployment Protection**, turn off Vercel Authentication if you want the `*-projects.vercel.app` address to be public.
 
-Canonical URLs, Open Graph URLs and the sitemap use Vercel's production domain automatically. With a custom domain, set `NEXT_PUBLIC_SITE_URL=https://your-domain` in the project's environment variables.
+Canonical URLs, Open Graph URLs and the sitemap use the address in `lib/site.ts`. To use a custom domain, set `NEXT_PUBLIC_SITE_URL=https://your-domain` in the project's environment variables (or change `productionUrl`).
 
 ---
 
