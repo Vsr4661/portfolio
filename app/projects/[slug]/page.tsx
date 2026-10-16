@@ -239,17 +239,21 @@ export default async function ProjectPage({ params }: PageProps<"/projects/[slug
         </CaseSection>
 
         <CaseSection id="sources" number="08" title="Links & sources">
-          <ul className="flex flex-wrap gap-x-6 gap-y-2">
-            {project.sources.map((source) => (
-              <li key={source.href}>
-                <a href={source.href} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-11 items-center gap-1.5 text-ink underline decoration-line underline-offset-4 hover:decoration-ink">
-                  {source.label}
-                  <ExternalLink aria-hidden className="size-4" />
-                  <span className="sr-only"> (opens in a new tab)</span>
-                </a>
-              </li>
-            ))}
-          </ul>
+          {project.sources.length === 0 ? (
+            <p className="text-muted">No public links yet: the source is private and the app isn&apos;t deployed.</p>
+          ) : (
+            <ul className="flex flex-wrap gap-x-6 gap-y-2">
+              {project.sources.map((source) => (
+                <li key={source.href}>
+                  <a href={source.href} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-11 items-center gap-1.5 text-ink underline decoration-line underline-offset-4 hover:decoration-ink">
+                    {source.label}
+                    <ExternalLink aria-hidden className="size-4" />
+                    <span className="sr-only"> (opens in a new tab)</span>
+                  </a>
+                </li>
+              ))}
+            </ul>
+          )}
         </CaseSection>
       </div>
 
