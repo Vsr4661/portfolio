@@ -29,8 +29,8 @@ export const categories: Category[] = [
   },
   {
     id: "learning",
-    title: "Learning Projects",
-    description: "Guided builds that cover the fundamentals.",
+    title: "Foundation Projects",
+    description: "Core web development fundamentals.",
   },
 ];
 
@@ -44,7 +44,7 @@ export const projects: Project[] = [
     kind: "Full-stack mobile app",
     date: "Oct 2026 – present",
     categories: ["featured", "full-stack", "mobile"],
-    stack: ["React Native", "Node.js", "PostgreSQL", "TypeScript", "Expo Router", "Express 5", "Prisma", "Redis", "Socket.IO", "TanStack Query", "Zustand", "Zod", "Jest", "GitHub Actions", "Docker Compose"],
+    stack: ["React Native", "Expo", "Node.js", "Express", "PostgreSQL", "Prisma", "Redis", "Socket.IO", "TypeScript", "TanStack Query", "Zustand", "Jest"],
     status: "In active development",
     repo: "https://github.com/Vsr4661/fittrack",
     linkNotes: [

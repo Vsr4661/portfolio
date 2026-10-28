@@ -114,7 +114,7 @@ export const skillGroups: SkillGroup[] = [
       { name: "Responsive Design", sources: ["crio", "project"] },
       { name: "CSS Flexbox", sources: ["crio", "project"] },
       { name: "CSS Positioning", sources: ["crio"] },
-      { name: "Next.js", sources: ["learning"] },
+      { name: "Next.js", sources: ["project"] },
     ],
   },
   {
@@ -142,7 +142,6 @@ export const skillGroups: SkillGroup[] = [
       { name: "Redis", sources: ["project"] },
       { name: "MySQL", sources: ["resume"] },
       { name: "SQLite", sources: ["resume"] },
-      { name: "MongoDB", sources: ["learning"] },
     ],
   },
   {
